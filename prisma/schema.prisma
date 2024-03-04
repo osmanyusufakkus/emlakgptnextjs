@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Link {
+  id                    Int     @id @default(autoincrement())
+  Baslik                String  
+  Link                  String  @unique
+  Ziyaret_Edildi        Boolean @default(false)
+  Ziyaret_Ediliyor      Boolean @default(false)
+  Kira                  Decimal?
+  Fotograf              String?
+  Olusturuldugu_Tarih   DateTime @default(now())
+  Guncellendigi_Tarih   DateTime @updatedAt
+}
+
+model Property {
+  id                    Int     @id @default(autoincrement())
+  Ilan_no               String  @unique
+  Son_Guncelleme_Tarihi String
+  Ilan_Durumu           String
+  Konut_Tipi            String
+  Konut_Sekli           String
+  Oda_Sayisi            String
+  Brut_m2               Decimal
+  Net_m2                Decimal
+  Bulundugu_Kat         String?
+  Bina_Yasi             Int?
+  Isinma_Tipi           String
+  Kat_Sayisi            Int
+  Esya_Durumu           String
+  Banyo_Sayisi          Int
+  Yapi_Tipi             String
+  Yapinin_Durumu        String
+  Kullanim_Durumu       String
+  Aidat                 Decimal
+  Cephe                 String
+  Depozito              Decimal
+  Yakit_Tipi            String
+  Yetkili_Ofis          String
+  Sehir                 String
+  Ilce                  String
+  Mahalle               String
+}
