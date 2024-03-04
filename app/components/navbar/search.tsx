@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import EmlakPrompt from "../emlakprompt";
+import EmlakPrompt from "../EmlakPrompt";
 
 const Search = () => {
   const [choices, setChoices] = useState([]);

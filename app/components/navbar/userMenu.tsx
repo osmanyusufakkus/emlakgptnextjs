@@ -1,7 +1,7 @@
 "use client";
 
 import { AiOutlineMenu } from "react-icons/ai";
-import Avatar from "../avatar";
+import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";

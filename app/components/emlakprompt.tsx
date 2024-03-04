@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function emlakprompt({ onSubmit }: any) {
+export default function Emlakprompt({ onSubmit }: any) {
   const [prompt, setPrompt] = useState("");
   return (
     <form

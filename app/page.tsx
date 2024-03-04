@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Container from "./components/container";
-import EmptyState from "./components/emptyState";
+import Container from "./components/Container";
+import EmptyState from "./components/EmptyState";
 export default function Home() {
   return (
     <Container>
