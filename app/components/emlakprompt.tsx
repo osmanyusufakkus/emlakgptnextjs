@@ -1,0 +1,25 @@
+import { useState } from "react";
+
+export default function emlakprompt({ onSubmit }: any) {
+  const [prompt, setPrompt] = useState("");
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (prompt === "") {
+          return;
+        }
+        onSubmit(prompt);
+        setPrompt("");
+      }}>
+      <input
+        type="text"
+        value={prompt}
+        onChange={(e) => {
+          setPrompt(e.target.value);
+        }}
+      />
+      <input type="submit" />
+    </form>
+  );
+}

@@ -1,31 +1,38 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import EmlakPrompt from "../emlakprompt";
 
 const Search = () => {
+  const [choices, setChoices] = useState([]);
   return (
-    <div className="border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
+    <div className="border-[1px] w-full md:w-auto py-2 rounded-full">
       <div className="flex flex-row items-center justify-between">
         <div className="test-sm font-semibold px-6 cursor-text ">
-          Search for property...
-        </div>
-        <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white">
-          <BiSearch
-            size={18}
-            onClick={async () => {
-              const response = await fetch("/api/chat-gpt/emlakgptprompt", {
+          <EmlakPrompt
+            onSubmit={async (prompt: any) => {
+              const response = await fetch("../../api/chat-gpt", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  someData: true,
+                  prompt,
                 }),
               });
-              console.log("Çalışıyor", response);
+              const result = await response.json();
+              setChoices(result.choices);
             }}
           />
         </div>
+        <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white">
+          <BiSearch
+            size={18} //onClick={async () => {}}
+          />
+        </div>
       </div>
+      {choices.map((choice: any) => {
+        return <p key={choice.index}>{choice.message.content}</p>;
+      })}
     </div>
   );
 };
