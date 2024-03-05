@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { useState } from "react";
 import EmlakPrompt from "../EmlakPrompt";
 
 const Search = () => {
@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <div className="border-[1px] w-full md:w-auto py-2 rounded-full">
       <div className="flex flex-row items-center justify-between">
-        <div className="test-sm font-semibold px-6 cursor-text ">
+        <div className="text-sm font-semibold px-6 cursor-text">
           <EmlakPrompt
             onSubmit={async (prompt: any) => {
               const response = await fetch("../../api/chat-gpt", {
@@ -24,7 +24,7 @@ const Search = () => {
             }}
           />
         </div>
-        <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white">
+        <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white shadow-sm hover:shadow-md transition cursor-pointer">
           <BiSearch
             size={18} //onClick={async () => {}}
           />

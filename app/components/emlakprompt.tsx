@@ -13,6 +13,7 @@ export default function Emlakprompt({ onSubmit }: any) {
         setPrompt("");
       }}>
       <input
+        className="focus:outline-none"
         type="text"
         value={prompt}
         onChange={(e) => {
