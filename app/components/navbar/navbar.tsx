@@ -15,8 +15,8 @@ const Navbar = () => {
             justify-between
             gap-3
             md:gap-0">
-            <Logo />
-            <Search />
+            <Logo/>
+            <Search  />
             <UserMenu />
           </div>
         </Container>

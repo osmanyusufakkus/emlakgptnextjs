@@ -1,16 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import { BiSearch } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import EmlakPrompt from "../Emlakprompt";
+import { searchStore } from "../../store/searchStore";
 
 const Search = () => {
+  const [choice, setChoice] = useState("");
+  useEffect(() => {
+    searchStore.getState().updateChoice(choice);
+  }, [choice]);
+
+  const handlePromptSubmit = async (prompt: any) => {
+    const response = await fetch("../../api/chat-gpt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt,
+      }),
+    });
+    const results = await response.json();
+    results.choices.map((result: any) => {
+      setChoice(result.message.content);
+    });
+  };
+
   return (
-    <div className="border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
+    <div className="border-[1px] w-full md:w-auto py-2 rounded-full">
       <div className="flex flex-row items-center justify-between">
-        <div className="test-sm font-semibold px-6 cursor-text ">Search for property...</div>
-          <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white">
-            <Link href="/listings"><BiSearch size={18} /></Link>
-          </div>
+        <div className="text-sm font-semibold px-2">
+          <EmlakPrompt onSubmit={handlePromptSubmit} />
+        </div>
       </div>
     </div>
   );
