@@ -25,10 +25,17 @@ const Search = () => {
           />
         </div>
       </div>
+    </div>
+  );
+};
+
+export const ChoicesList = ({ choices }: { choices: any[] }) => {
+  return (
+    <>
       {choices.map((choice: any) => {
         return <p key={choice.index}>{choice.message.content}</p>;
       })}
-    </div>
+    </>
   );
 };
 
