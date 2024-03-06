@@ -9,7 +9,7 @@ const Search = () => {
   return (
     <div className="border-[1px] w-full md:w-auto py-2 rounded-full">
       <div className="flex flex-row items-center justify-between">
-        <div className="text-sm font-semibold px-6 cursor-text">
+        <div className="text-sm font-semibold px-2">
           <EmlakPrompt
             onSubmit={async (prompt: any) => {
               const response = await fetch("../../api/chat-gpt", {
@@ -22,11 +22,6 @@ const Search = () => {
               const result = await response.json();
               setChoices(result.choices);
             }}
-          />
-        </div>
-        <div className="p-2 mr-2 bg-cyan-500 rounded-full text-white shadow-sm hover:shadow-md transition cursor-pointer">
-          <BiSearch
-            size={18} //onClick={async () => {}}
           />
         </div>
       </div>
