@@ -1,7 +1,7 @@
-import Container from "../container";
-import Logo from "./logo";
-import Search from "./search";
-import UserMenu from "./userMenu";
+import Container from "../Container";
+import Logo from "./Logo";
+import Search from "./Search";
+import UserMenu from "./UserMenu";
 const Navbar = () => {
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">

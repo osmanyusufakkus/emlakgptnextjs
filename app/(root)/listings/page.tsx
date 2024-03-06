@@ -1,4 +1,4 @@
-import EmptyState from "@/app/components/emptyState";
+import EmptyState from "@/app/components/EmptyState";
 
 export default function Listings() {
   const isEmpty = true;
