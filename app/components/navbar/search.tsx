@@ -1,37 +1,19 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import EmlakPrompt from "../Emlakprompt";
-import { searchStore } from "../../store/searchStore";
+import { BiSearch } from "react-icons/bi";
+import Link from "next/link";
 
 const Search = () => {
-  const [choice, setChoice] = useState("");
-  useEffect(() => {
-    searchStore.getState().updateChoice(choice);
-  }, [choice]);
-
-  const handlePromptSubmit = async (prompt: any) => {
-    const response = await fetch("../../api/chat-gpt", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        prompt,
-      }),
-    });
-    const results = await response.json();
-    results.choices.map((result: any) => {
-      setChoice(result.message.content);
-    });
-  };
-
   return (
-    <div className="border-[1px] w-full md:w-auto py-2 rounded-full">
+    <div className="border-[2px] border-cyan-500 w-full md:w-auto py-2 rounded-full hover:bg-cyan-50/25 transition cursor-pointer">
       <div className="flex flex-row items-center justify-between">
-        <div className="text-sm font-semibold px-2">
-          <EmlakPrompt onSubmit={handlePromptSubmit} />
+        <div className="m-2 ml-5 text-gray-700/70">
+          <Link href="/api/searching">Ara ve Keşfet...</Link>
+        </div>
+        <div className="text-sm font-semibold px-2 p-2 mr-2 bg-cyan-500 rounded-full text-white shadow-sm hover:shadow-md transition cursor-pointer ">
+          <BiSearch size={18} />
         </div>
       </div>
     </div>
+    
   );
 };
 
