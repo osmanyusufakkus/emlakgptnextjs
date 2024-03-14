@@ -1,5 +1,4 @@
 "use client";
-
 import ShowResult from "./components/ShowResult";
 
 const ParentComponent = () => {

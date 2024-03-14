@@ -25,7 +25,11 @@ model Link {
 
 model Property {
   id                    Int     @id @default(autoincrement())
+  Link                  String  @unique
   Ilan_no               String  @unique
+  Baslik                String
+  Fiyat                 Decimal?
+  Fotograf              String?
   Son_Guncelleme_Tarihi String
   Ilan_Durumu           String
   Konut_Tipi            String
