@@ -1,4 +1,5 @@
 "use client";
+import HandlePrompt from "@/app/actions/handlePrompt";
 import { searchStore } from "@/app/store/searchStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -8,10 +9,10 @@ export default function Searching() {
   const [choice, setChoice] = useState("");
   useEffect(() => {
     searchStore.getState().updateChoice(choice);
+    HandlePrompt(choice);
   }, [choice]);
 
-  const handlePromptSubmit = async (prompt:any) => {
-
+  const handlePromptSubmit = async (prompt: any) => {
     const response = await fetch("../../api/chat-gpt", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -19,12 +20,12 @@ export default function Searching() {
         prompt,
       }),
     });
-    console.log("Response"+response);
+    console.log("Response" + response);
     const results = await response.json();
     results.choices.map((result: any) => {
       setChoice(result.message.content);
     });
-  }
+  };
 
   return (
     <div>
@@ -39,11 +40,12 @@ export default function Searching() {
         <h1 className="pb-4">Aradığın evi tanımlamaya başla...</h1>
         <div className="w-11/12 md:w-3/4 lg:max-w-3xl m-auto ">
           <div className="relative z-30 text-base text-gray-200 ">
-            <form onSubmit={(e)=> {
-              e.preventDefault()
-              if (prompt === "") return
-              handlePromptSubmit(prompt)
-            }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (prompt === "") return;
+                handlePromptSubmit(prompt);
+              }}>
               <textarea
                 placeholder="Konyada 3+1 ev arıyorum..."
                 className="mt-2 shadow-md focus:outline-none placeholder-gray-200 rounded-2xl py-3 px-6 block w-full bg-gray-100 bg-opacity-5 backdrop-filter backdrop-blur-md"
@@ -55,8 +57,9 @@ export default function Searching() {
                 name="prompt"
                 value={prompt}
                 onChange={(e) => {
-                  e.preventDefault()
-                  setPrompt(e.target.value)}}
+                  e.preventDefault();
+                  setPrompt(e.target.value);
+                }}
               />
               <input
                 type="submit"
