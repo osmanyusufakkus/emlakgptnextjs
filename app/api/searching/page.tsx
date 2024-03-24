@@ -3,8 +3,12 @@ import HandlePrompt from "@/app/actions/handlePrompt";
 import { searchStore } from "@/app/store/searchStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { textStore } from "@/app/store/textStore";
+import { useRouter } from "next/navigation";
 
 export default function Searching() {
+  const router = useRouter();
+  const text = textStore((state: any) => state.text);
   const [prompt, setPrompt] = useState("");
   const [choice, setChoice] = useState("");
   useEffect(() => {
@@ -45,6 +49,7 @@ export default function Searching() {
                 e.preventDefault();
                 if (prompt === "") return;
                 handlePromptSubmit(prompt);
+                router.push("/listings");
               }}>
               <textarea
                 placeholder="Konyada 3+1 ev arıyorum..."
@@ -67,7 +72,6 @@ export default function Searching() {
                 className="bg-cyan-500 text-white rounded-full py-2 px-6 mt-2 hover:cursor-pointer"
               />
             </form>
-
             <div className="text-left absolute top-10 rounded-t-none rounded-b-2xl shadow bg-transparent divide-y w-full max-h-40 overflow-auto"></div>
           </div>
         </div>

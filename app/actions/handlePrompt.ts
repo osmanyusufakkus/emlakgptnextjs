@@ -2,7 +2,7 @@ import { textStore } from "../store/textStore";
 
 async function HandlePrompt(prompt: any) {
   const result = await performPrismaQuery(prompt);
-  console.log("Result:" + result);
+  console.log("Result:", JSON.stringify(result, null, 2));
   return textStore.getState().updateText(result);
 }
 
@@ -22,6 +22,7 @@ async function performPrismaQuery(code: any) {
   const whereClause = await extractWhereClause(code);
   const whereClauseStr = whereClause[0];
   const whereClauseObj = await eval(`({${whereClauseStr}})`);
+  console.log("WhereClauseObj:" + whereClauseObj);
   return whereClauseObj;
 }
 
