@@ -1,5 +1,5 @@
 "use client";
-import HandlePrompt from "@/app/actions/handlePrompt";
+import { HandlePrompt } from "@/app/components/navbar/Navbar";
 import { searchStore } from "@/app/store/searchStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export default function Searching() {
   }, [choice]);
 
   const handlePromptSubmit = async (prompt: any) => {
-    const response = await fetch("../../api/chat-gpt", {
+    const response = await fetch("../chat-gpt", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

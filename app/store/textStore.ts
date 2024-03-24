@@ -6,6 +6,6 @@ type Store = {
 };
 
 export const textStore = create<Store>()((set) => ({
-  text: "{Konut_Tipi: 'Daire'}",
+  text: "{ Konut_Tipi: 'Daire' }",
   updateText: (text) => set(() => ({ text })),
 }));

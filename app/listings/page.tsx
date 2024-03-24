@@ -1,7 +1,7 @@
 "use client";
 import EmptyState from "@/app/components/EmptyState";
 import Container from "../components/Container";
-import getListings from "../actions/getListings";
+import { getListings } from "../components/navbar/Navbar";
 import ListingCard from "../components/listings/ListingCard";
 import Image from "next/image";
 import { textStore } from "../store/textStore";
