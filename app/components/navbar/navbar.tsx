@@ -1,21 +1,11 @@
+"use client"
 import { textStore } from "../../store/textStore";
-import prisma from "@/app/libs/prismadb";
 import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import { usePathname } from 'next/navigation'
 
-export async function getListings(text: any) {
-  try {
-    console.log("Text:", text);
-    const listings = await prisma.property.findMany({
-      where: text,
-    });
-    return listings;
-  } catch (error: any) {
-    console.error(error);
-  }
-}
 export async function HandlePrompt(prompt: any) {
   const result = await performPrismaQuery(prompt);
   console.log("Result:", JSON.stringify(result, null, 2));
@@ -41,6 +31,7 @@ async function performPrismaQuery(code: any) {
 }
 
 const Navbar = () => {
+  const pathname = usePathname()
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -54,7 +45,7 @@ const Navbar = () => {
             gap-3
             md:gap-0">
             <Logo />
-            <Search />
+            {pathname !== "/api/searching" && <Search />}
             <UserMenu />
           </div>
         </Container>

@@ -1,26 +1,59 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import EmptyState from "@/app/components/EmptyState";
 import Container from "../components/Container";
-import { getListings } from "../components/navbar/Navbar";
 import ListingCard from "../components/listings/ListingCard";
-import Image from "next/image";
 import { textStore } from "../store/textStore";
+import { useEffect, useState } from "react";
+import Loading from "./loading";
 
-export default async function Listings() {
+export default function Listings() {
+  const [listings, setListings] = useState([]);
   const text = textStore((state: any) => state.text);
-  const listings = await getListings(text);
-  const isEmpty = true;
-
-  if (isEmpty && listings?.length === 0) {
-    return <EmptyState showReset />;
+  const [isLoading, setIsLoading] = useState(true);
+  function objectToQueryString(obj: any) {
+    return Object.keys(obj)
+      .map((key) => key + "=" + encodeURIComponent(obj[key]))
+      .join("&");
   }
+
+  const queryString = objectToQueryString(text);
+  const getListings = async () => {
+    try {
+      const response = await fetch(`/api/listings?${queryString}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => setListings(data));
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getListings();
+  },[]);
+
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <Container>
-      <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {listings?.map((listing: any) => {
-          return <ListingCard key={listing.id} data={listing} />;
-        })}
-      </div>
-    </Container>
+    <main>
+     {listings?.length === 0 && !isLoading ? (
+        <EmptyState showReset />
+      ) : (
+        <Container>
+          <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+            {listings?.map((listing: any) => {
+              return <ListingCard key={listing.id} data={listing} />;
+            })}
+          </div>
+        </Container>
+      )}
+    </main>
   );
 }
