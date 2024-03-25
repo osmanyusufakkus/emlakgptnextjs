@@ -6,18 +6,14 @@ import ListingCard from "../components/listings/ListingCard";
 import { textStore } from "../store/textStore";
 import { useEffect, useState } from "react";
 import Loading from "./loading";
+import qs from "qs";
 
 export default function Listings() {
   const [listings, setListings] = useState([]);
   const text = textStore((state: any) => state.text);
   const [isLoading, setIsLoading] = useState(true);
-  function objectToQueryString(obj: any) {
-    return Object.keys(obj)
-      .map((key) => key + "=" + encodeURIComponent(obj[key]))
-      .join("&");
-  }
 
-  const queryString = objectToQueryString(text);
+  const queryString =  qs.stringify(text); 
   const getListings = async () => {
     try {
       const response = await fetch(`/api/listings?${queryString}`, {
