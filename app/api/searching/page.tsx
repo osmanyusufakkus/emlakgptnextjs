@@ -1,10 +1,10 @@
 "use client";
-import { HandlePrompt } from "@/app/components/navbar/navbar";
 import { searchStore } from "@/app/store/searchStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/listings/loading";
+import { HandlePrompt } from "@/app/actions/handlePrompt";
 
 export default function Searching() {
   const router = useRouter();
