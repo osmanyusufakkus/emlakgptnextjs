@@ -19,7 +19,7 @@ const EmptyState: React.FC<EmptyState> = ({
       <Heading center title={title} subtitle={subtitle} />
       <div className="w-48 mt-4">
         {showReset && (
-          <Button outline label="Baştan Ara" onClick={() => router.push("/")} />
+          <Button outline label="Baştan Ara" onClick={() => router.push("/api/searching")} />
         )}
       </div>
     </div>

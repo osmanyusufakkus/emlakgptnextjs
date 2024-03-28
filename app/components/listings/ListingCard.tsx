@@ -2,7 +2,6 @@
 
 import { Property } from "@prisma/client";
 import Image from "next/image";
-import { useMemo } from "react";
 import HeartButton from "../HeartButton";
 import Link from "next/link";
 
