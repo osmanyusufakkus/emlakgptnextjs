@@ -56,8 +56,9 @@ export default function Searching() {
                   setTimeout(() => {
                     router.push("/listings");
                     setLoading(false);
-                  }, 5000);
-                }}>
+                  }, 3000);
+                }}
+              >
                 <textarea
                   placeholder="Konyada 3+1 ev arıyorum..."
                   className="mt-2 shadow-md focus:outline-none placeholder-gray-200 rounded-2xl py-3 px-6 block w-full bg-gray-100 bg-opacity-5 backdrop-filter backdrop-blur-md"
