@@ -5,6 +5,7 @@ import qs from "qs";
 export async function GET(request: Request) {
   try {
     const params = qs.parse(request.url.split("?")[1]);
+    console.log("Params: " + JSON.stringify(params, null, 2));
     const fields = [
       "Fiyat",
       "Bina_Yasi",
@@ -24,14 +25,17 @@ export async function GET(request: Request) {
           parsedParams[key] = value;
         }
       } else if (typeof value === "object") {
+        const paramObject: any = {}; 
         for (const [subKey, subValue] of Object.entries(value)) {
-          if (fields.includes(subKey)) {
-            parsedParams[subKey] = Number(subValue);
+          if (fields.includes(key)) {
+            paramObject[subKey] = Number(subValue);
+            parsedParams[key] = paramObject;
           }
         }
       }
     }
-    console.log(parsedParams);
+
+    console.log("Parsed Params:" + JSON.stringify(parsedParams, null, 2));
     const listings = await prisma.property.findMany({
       where: parsedParams,
     });
