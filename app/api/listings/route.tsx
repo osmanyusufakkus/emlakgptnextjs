@@ -14,7 +14,7 @@ export async function GET(request: Request) {
       "Kat_Sayisi",
       "Aidat",
       "Depozito",
-      "Banyo Sayisi",
+      "Banyo_Sayisi",
     ];
     const parsedParams: any = {};
     for (const [key, value] of Object.entries(params)) {
@@ -25,7 +25,7 @@ export async function GET(request: Request) {
           parsedParams[key] = value;
         }
       } else if (typeof value === "object") {
-        const paramObject: any = {}; 
+        const paramObject: any = {};
         for (const [subKey, subValue] of Object.entries(value)) {
           if (fields.includes(key)) {
             paramObject[subKey] = Number(subValue);
