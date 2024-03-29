@@ -16,18 +16,25 @@ export default function Listings() {
   const queryString =  qs.stringify(text); 
   const getListings = async () => {
     try {
+      console.log(queryString);
       const response = await fetch(`/api/listings?${queryString}`, {
         method: "GET",
-      })
-        .then((response) => response.json())
-        .then((data) => setListings(data));
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      if (response.headers.get('Content-Type')?.includes('application/json')) {
+        const data = await response.json();
+        setListings(data);
+      } else {
+        console.log('Received non-JSON response');
+      }
     } catch (error: any) {
       console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     getListings();
   },[]);
