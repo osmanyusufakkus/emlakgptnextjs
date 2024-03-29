@@ -14,7 +14,7 @@ export async function POST(request: any) {
         role: "system",
         content:
           "The following AI tool helps identifying following properties from the users request. " +
-          "In database, a sample property table row like that: " +
+          "Do not add any extra fields and ignore irrelevant infos. In database, all property table row like that: " +
           "'Sehir': 'Türkiyedeki bütün şehirler'," +
           "'Ilce': 'Türkiyedeki bütün ilçeler'," +
           "'Mahalle': 'Türkiyedeki bütün mahalleler'," +
@@ -24,21 +24,22 @@ export async function POST(request: any) {
           "'Brut_m2': '140'," +
           "'Net_m2': '120'," +
           "'Bina_Yasi': '15'," +
-          "'Kat_Sayisi': '1 Katlı','2 Katlı','3 Katlı','4 Katlı','5 Katlı'," +
+          "'Kat_Sayisi': '1','2','3','4','5'," +
           "'Banyo_Sayisi': 2," +
           "'Yapi_Tipi': 'Ahşap','Betonarme','Çelik','Kütük','Prefabrik','Taş Bina','Yığma'," +
           "'Kullanim_Durumu': 'Boş','Kiracılı','Mülk Sahibi'," +
-          "'Aidat': '1.350'," +
-          "'Depozito': '20.500'," +
+          "'Fiyat': '20000'" +
+          "'Aidat': '1350'," +
+          "'Depozito': '20500'," +
           "'Yakit_Tipi': 'Doğalgaz','Kömür-Odun','Akaryakıt','Elektrik'," +
-          "'Yetkili_Ofis': 'Evet','Hayır'.\n Please consider alternatives while producing code. Alternatives to all files are specified as this:" +
-          "Esya_Durumu: 'Eşyalı', 'Eşyasız'," +
-          "Oda_Sayisi: 4+1','2+1','1+1','3+1','1+0','6+1','5+1','4+2'," +
-          "Isinma_Tipi: 'Güneş Enerjisi','Kat Kaloriferi' ,'Klima','Kombi','Merkezi','Merkezi (Pay Ölçer)','Soba','Jeotermal Isıtma','Yerden Isıtma','Doğalgaz Sobası','Fancoil Ünitesi','VRV','Isı Pompası'," +
-          "Konut_Tipi: 'Daire', 'Villa','Müstakil Ev','Prefabrik','Bina','Residence','Yazlık','Köy Evi','Çiftlik Evi','Köşk','Yalı Dairesi','Yalı','Dağ Evi','Loft Daire','Kooperatif'," +
-          "Cephe: 'Kuzey Cephe', 'Güney Cephe', 'Doğu Cephe', 'Batı Cephe'," +
-          "Yapinin_Durumu: 'İkinci El', 'Sıfır', 'Yapım Aşamasında'," +
-          "Bulundugu_Kat: 'Yüksek Giriş','Ara Kat','En Üst Kat','Çatı Katı','Teras Katı','Bodrum ','Yarı Bodrum','Bodrum ve Zemin','Zemin','Bahçe Katı','Giriş Katı','Villa Katı','Asma Kat','Kot 1','Kot 2','1','2','3','4',",
+          "'Yetkili_Ofis': 'Evet','Hayır'," +
+          "'Esya_Durumu': 'Eşyalı', 'Eşyasız'," +
+          "'Oda_Sayisi': 4+1','2+1','1+1','3+1','1+0','6+1','5+1','4+2'," +
+          "'Isinma_Tipi': 'Güneş Enerjisi','Kat Kaloriferi' ,'Klima','Kombi','Merkezi','Merkezi (Pay Ölçer)','Soba','Jeotermal Isıtma','Yerden Isıtma','Doğalgaz Sobası','Fancoil Ünitesi','VRV','Isı Pompası'," +
+          "'Konut_Tipi': 'Daire', 'Villa','Müstakil Ev','Prefabrik','Bina','Residence','Yazlık','Köy Evi','Çiftlik Evi','Köşk','Yalı Dairesi','Yalı','Dağ Evi','Loft Daire','Kooperatif'," +
+          "'Cephe': 'Kuzey Cephe', 'Güney Cephe', 'Doğu Cephe', 'Batı Cephe'," +
+          "'Yapinin_Durumu': 'İkinci El', 'Sıfır', 'Yapım Aşamasında'," +
+          "'Bulundugu_Kat': 'Yüksek Giriş','Ara Kat','En Üst Kat','Çatı Katı','Teras Katı','Bodrum ','Yarı Bodrum','Bodrum ve Zemin','Zemin','Bahçe Katı','Giriş Katı','Villa Katı','Asma Kat','Kot 1','Kot 2','1','2','3','4',",
       },
       {
         role: "user",
@@ -47,8 +48,10 @@ export async function POST(request: any) {
       {
         role: "user",
         content:
-          "For the user requesting above, we need to create a prisma code to fetch according to fields. " +
-          "For the codepart you respond, can you parse and return 'where' part as 'where: { }' format?",
+          "For the user requesting above, we need to create a prisma code to fetch according to given fields." +
+          "For the codepart you respond, can you parse and return 'where' part as 'where: { }' format?" +
+          "Here is an example: 2+1 eve ihtiyacım var. En az 80mt2 olsun. Fiyatı en fazla 20000 lira olsun. Bina yaşı 15 ve daha az olsun. Kombi mutlaka olsun ve doğalgazlı olsun. Bina 5 kattan yüksek olmasın." +
+          "Expected answer of example : 'prisma.property.findMany({where: {Oda_Sayisi:'2+1',Net_m2:{gte:80},Fiyat:{lte:20000},Bina_Yasi:{lte:15},Isinma_Tipi:'Kombi',Yakit_Tipi:'Doğalgaz',Kat_Sayisi:{lte:5}}});'",
       },
     ],
   });
