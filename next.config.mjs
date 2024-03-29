@@ -6,7 +6,7 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'hecdn01.hemlak.com',
           port: '',
-          pathname: '/mncropresize/182/137/ds01/**',
+          pathname: '/mncropresize/**',
         },
       ],
     },

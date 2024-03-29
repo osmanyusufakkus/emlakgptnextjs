@@ -56,7 +56,7 @@ export default function Searching() {
                   setTimeout(() => {
                     router.push("/listings");
                     setLoading(false);
-                  }, 3000);
+                  }, 5000);
                 }}
               >
                 <textarea
