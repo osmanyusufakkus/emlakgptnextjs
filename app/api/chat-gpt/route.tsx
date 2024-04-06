@@ -23,9 +23,9 @@ export async function POST(request: any) {
           "Before sending your final response I want you to check those essential things for the sake of my code" +
           "1. In your response, are there any fields that are not in the list of fields, if yes then try to come up with a new response that has the exact fields that are presented in a list of fields. Try to filter those fields correctly. If there are irrelevant information in the text, do not try to categorize them." +
           "2. Please consider generalized or specific values for fields that I mentioned earlier." +
-          "3. Avoid adding incompatible field names or fields to content." +
+          "3. Avoid adding incompatible fields or field values to content." +
           "4. Avoid adding unnecessary information to the response content. This includes explanation etc. " +
-          "5. Check whether your response is in the correct format: Correct format: 'prisma.property.findMany({\n  where: {\n    Sehir: 'İstanbul',\n    Konut_Tipi: 'Daire'\n  }\n});' " +
+          "5. Check whether your response is in the correct format: Example correct format, fields and values may vary: 'prisma.property.findMany({\n  where: {\n    Sehir: 'İstanbul',\n    Konut_Tipi: 'Daire'\n  }\n});' " +
           "6. If your response is passed from the steps above, you can finish your work. Even if any of the steps above are not passed, you should try to come up with a new response that satisfies the conditions above.",
       },
     ],
