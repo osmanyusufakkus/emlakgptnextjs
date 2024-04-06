@@ -48,7 +48,7 @@ export async function POST(request: any) {
           `"Input: ""'${input.prompt}'"""` +
           "Before sending your final response I want you check those essential things for the sake of my code" +
           "1. In your response, are there any fields that are not in the list of fields, if yes then try to come up with a new response which has exact fields that are presented in list of fields. Try to filter those fields correctly. If there are irrelevant information in the text, do not try to categorize them." +
-          "2. Check whether your response is in correct format: Correct format: 'prisma.property.findMany({where: {Oda_Sayisi:'2+1',Net_m2:{gte:80},Fiyat:{lte:20000},Bina_Yasi:{lte:15},Isinma_Tipi:'Kombi',Yakit_Tipi:'Doğalgaz',Kat_Sayisi:{lte:5}}});' " +
+          "2. Check whether your response is in correct format: Correct format: 'prisma.property.findMany({\n  where: {\n    Sehir: 'İstanbul',\n    Konut_Tipi: 'Daire'\n  }\n});' " +
           "3. If your response is passed from first and second steps, you can finish your work.",
       },
     ],
