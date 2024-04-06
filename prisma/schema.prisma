@@ -37,8 +37,8 @@ model Property {
   Oda_Sayisi            String
   Brut_m2               Decimal
   Net_m2                Decimal
-  Bulundugu_Kat         String?
-  Kat_Numarasi          Int?
+  Bulundugu_Kat_Tipi    String?
+  Bulundugu_Kat_Numarasi   Int?
   Bina_Yasi             Int?
   Isinma_Tipi           String
   Kat_Sayisi            Int

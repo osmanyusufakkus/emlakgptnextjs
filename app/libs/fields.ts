@@ -19,8 +19,8 @@ export const fields = [
     "'Oda_Sayisi':4+1','2+1','1+1','3+1','1+0','6+1','5+1','4+2'," +
     "'Isinma_Tipi': 'Güneş Enerjisi','Kat Kaloriferi' ,'Klima','Kombi','Merkezi','Merkezi (Pay Ölçer)','Soba','Jeotermal Isıtma','Yerden Isıtma','Doğalgaz Sobası','Fancoil Ünitesi','VRV','Isı Pompası'," +
     "'Konut_Tipi': 'Daire', 'Villa','Müstakil Ev','Prefabrik','Bina','Residence','Yazlık','Köy Evi','Çiftlik Evi','Köşk','Yalı Dairesi','Yalı','Dağ Evi','Loft Daire','Kooperatif'," +
-    "'Cephe': 'Kuzey Cephe', 'Güney Cephe', 'Doğu Cephe', 'Batı Cephe'," +
+    "'Cephe': 'Kuzey', 'Güney', 'Doğu', 'Batı'," +
     "'Yapinin_Durumu': 'İkinci El', 'Sıfır', 'Yapım Aşamasında'," +
-    "'Bulundugu_Kat': 'Yüksek Giriş','Ara Kat','En Üst Kat','Çatı Katı','Teras Katı','Bodrum ','Yarı Bodrum','Bodrum ve Zemin','Zemin','Bahçe Katı','Giriş Katı','Villa Katı','Asma Kat','Kot 1','Kot 2'" +
-    "'Kat_Numarasi':'0','1','2'",
+    "'Bulundugu_Kat_Tipi': 'Yüksek Giriş','Ara Kat','En Üst Kat','Çatı Katı','Teras Katı','Bodrum ','Yarı Bodrum','Bodrum ve Zemin','Zemin','Bahçe Katı','Giriş Katı','Villa Katı','Asma Kat','Kot 1','Kot 2'" +
+    "'Bulundugu_Kat_Numarasi':'0','1','2',",
 ];

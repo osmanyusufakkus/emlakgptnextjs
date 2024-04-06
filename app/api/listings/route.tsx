@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       "Aidat",
       "Depozito",
       "Banyo_Sayisi",
-      "Kat_Numarasi",
+      "Bulundugu_Kat_Numarasi",
     ];
     const parsedParams: any = {};
     for (const [key, value] of Object.entries(params)) {
@@ -47,8 +47,7 @@ export async function GET(request: Request) {
       Bina_Yasi: Number(listing.Bina_Yasi),
       Brut_m2: Number(listing.Brut_m2),
       Net_m2: Number(listing.Net_m2),
-      Bulundugu_Kat: Number(listing.Bulundugu_Kat),
-      Kat_Numarasi: Number(listing.Kat_Numarasi),
+      Bulundugu_Kat_Numarasi: Number(listing.Bulundugu_Kat_Numarasi),
       Kat_Sayisi: Number(listing.Kat_Sayisi),
       Aidat: Number(listing.Aidat),
       Depozito: Number(listing.Depozito),

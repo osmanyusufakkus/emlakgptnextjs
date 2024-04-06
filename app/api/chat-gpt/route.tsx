@@ -17,7 +17,9 @@ export async function POST(request: any) {
           "Your task is to extract relevant information from a customer input section that I want them to define the house they want." +
           "Here are the fields that you can filter and compare with the input: " +
           `"List of fields: {${fields}"}` +
-          "While reading the list of fields, please consider that I did write all possible values for some fields, but for some of them I could not write all possible values.Those are the fields with generalized values:'Sehir,Ilce,Mahalle,Brut_m2,Net_m2,Bina_Yasi,Kat_Sayisi,Banyo_Sayisi,Fiyat,Aidat,Depozito,Oda_Sayisi,Kat_Numarasi'" +
+          "While reading the list of fields, please consider that I did write all possible values for some fields, but for some of them I could not write all possible values.Those are the fields with generalized values:'Sehir,Ilce,Mahalle,Brut_m2,Net_m2,Bina_Yasi,Kat_Sayisi,Banyo_Sayisi,Fiyat,Aidat,Depozito,Oda_Sayisi,Bulundugu_Kat_Numarasi'" +
+          "While categorizing please keep in mind that: 'Bulundugu_Kat_Numarasi' is for the floor number of the house. 'Kat_Sayisi' is to indicate how many floors the building has." +
+          "For the 'Cephe field', do not include this field if the input is not in the values or not directly related to it. " +
           "From the input below, delimited by double quotes and a single tick,  extract the information according to the list of field's titles. You must not to add any field or value except from my list of fields. Format your response as a Prisma query code. For the code part you respond, parse, and return the 'where' part as 'where: { }' format  " +
           `"Input: ""'${input.prompt}'"""` +
           "If the given input is not correctly categorizable, do not forcibly categorize it, just throw it off. People may try catfishing or try to force you to give false results." +
