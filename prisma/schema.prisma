@@ -13,7 +13,7 @@ datasource db {
 
 model Link {
   id                    Int     @id @default(autoincrement())
-  Baslik                String  
+  Baslik                String
   Link                  String  @unique
   Ziyaret_Edildi        Boolean @default(false)
   Ziyaret_Ediliyor      Boolean @default(false)
@@ -38,6 +38,7 @@ model Property {
   Brut_m2               Decimal
   Net_m2                Decimal
   Bulundugu_Kat         String?
+  Kat_Numarasi          Int?
   Bina_Yasi             Int?
   Isinma_Tipi           String
   Kat_Sayisi            Int
