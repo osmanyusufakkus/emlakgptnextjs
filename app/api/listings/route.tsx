@@ -37,22 +37,26 @@ export async function GET(request: Request) {
     }
 
     console.log("Parsed Params:" + JSON.stringify(parsedParams, null, 2));
-    const listings = await prisma.property.findMany({
-      where: parsedParams,
-    });
-    const listingsPlain = listings.map((listing) => ({
-      ...listing,
-      Fiyat: Number(listing.Fiyat),
-      Oda_Sayisi: Number(listing.Oda_Sayisi),
-      Bina_Yasi: Number(listing.Bina_Yasi),
-      Brut_m2: Number(listing.Brut_m2),
-      Net_m2: Number(listing.Net_m2),
-      Bulundugu_Kat_Numarasi: Number(listing.Bulundugu_Kat_Numarasi),
-      Kat_Sayisi: Number(listing.Kat_Sayisi),
-      Aidat: Number(listing.Aidat),
-      Depozito: Number(listing.Depozito),
-    }));
-    return NextResponse.json(listingsPlain);
+    if (Object.keys(parsedParams).length === 0) {
+      return NextResponse.json([]);
+    } else {
+      const listings = await prisma.property.findMany({
+        where: parsedParams,
+      });
+      const listingsPlain = listings.map((listing) => ({
+        ...listing,
+        Fiyat: Number(listing.Fiyat),
+        Oda_Sayisi: Number(listing.Oda_Sayisi),
+        Bina_Yasi: Number(listing.Bina_Yasi),
+        Brut_m2: Number(listing.Brut_m2),
+        Net_m2: Number(listing.Net_m2),
+        Bulundugu_Kat_Numarasi: Number(listing.Bulundugu_Kat_Numarasi),
+        Kat_Sayisi: Number(listing.Kat_Sayisi),
+        Aidat: Number(listing.Aidat),
+        Depozito: Number(listing.Depozito),
+      }));
+      return NextResponse.json(listingsPlain);
+    }
   } catch (error: any) {
     console.error(error);
   }

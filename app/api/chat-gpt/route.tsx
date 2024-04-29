@@ -61,6 +61,7 @@ export async function POST(request: any) {
           "After double-checking the fields, rewrite the prisma query according to the instructions",
 
         },
+
     ],
     temperature: 0,
   });
