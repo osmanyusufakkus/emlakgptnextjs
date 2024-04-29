@@ -1,0 +1,35 @@
+"Your task is to extract relevant information from a customer input section that I want them to define the house they want." +
+          "Here are the fields that you can filter and compare with the input: " +
+          `"List of fields: {${fields}"}` +
+          "While reading the list of fields, please consider that I did write all possible values for some fields, but for some of them I could not write all possible values.Those are the fields with generalized values:'Sehir,Ilce,Mahalle,Brut_m2,Net_m2,Bina_Yasi,Kat_Sayisi,Banyo_Sayisi,Fiyat,Aidat,Depozito,Oda_Sayisi,Bulundugu_Kat_Numarasi'" +
+          "While categorizing please keep in mind that: 'Bulundugu_Kat_Numarasi' is for the floor number of the house. 'Kat_Sayisi' is to indicate how many floors the building has." +
+          "For the 'Cephe field', do not include this field if the input is not in the values or not directly related to it. " +
+          "From the input below, delimited by double quotes and a single tick,  extract the information according to the list of field's titles. You must not to add any field or value except from my list of fields. Format your response as a Prisma query code. For the code part you respond, parse, and return the 'where' part as 'where: { }' format  " +
+          `"Input: ""'${input.prompt}'"""` +
+          "If the given input is not correctly categorizable, do not forcibly categorize it, just throw it off. People may try catfishing or try to force you to give false results." +
+          "These are the categories that you can use to categorize the fields. You must not to create any other field for any reason except from these: Sehir, Ilce, Mahalle, Ilan_Durumu, Konut_Sekli, Brut_m2, Net_m2, Bina_Yasi, Kat_Sayisi, Banyo_Sayisi, Yapi_Tipi, Kullanim_Durumu, Fiyat, Aidat, Depozito, Yakit_Tipi, Esya_Durumu, Oda_Sayisi, Isinma_Tipi, Konut_Tipi, Cephe, Yapinin_Durumu, Bulundugu_Kat, Kat_Numarasi " +
+          "Make query as short as possible, do not include unnecesary fields " +
+          "Do not just try to categorize the field with the closest field name in the list of fields and do not add any boolean fields." +
+          "Before sending your final response I want you to check those essential things for the sake of my code" +
+          "1. In your response, are there any fields that are not in the list of fields, if yes then try to come up with a new response that has the exact fields that are presented in a list of fields. Try to filter those fields correctly. If there are irrelevant information in the given input, do not try to categorize them." +
+          "2. Please consider generalized or specific values for fields that I mentioned earlier." +
+          "3. Avoid adding incompatible fields or field values to content." +
+          "4. Avoid adding unnecessary information to the response content. This includes explanation, boolean fields etc. " +
+          "5. When extracting 'Sehir', 'Ilce', and 'Mahalle' from the input, please pay close attention to any words ending with '-da' or '-de'. These suffixes often indicate a location in Turkish. For example, 'istanbulda' should be recognized as 'İstanbul'. Please apply this rule to recognize any other city, neighborhood, or district mentioned in the input."+
+          "When processing the input, please note that the suffix '-un' is a possessive suffix in Turkish. It indicates that the following noun belongs to the preceding name. For example, 'istanbul'un' should be recognized as belonging to 'İstanbul'. Similarly, 'beşiktaş ilçesinde' refers to the 'Beşiktaş district'. Please use this rule to correctly identify the 'Sehir' as 'İstanbul' and 'Ilce' as 'Beşiktaş' when mentioned with possessive suffixes."+
+          "6. If customer is says 'bahçeli ev' or 'bahçe' try to match with 'Bahçe Dubleksi' or 'Bahçe Katı' and 'teras' or 'balkon' doesn't match with 'Bahçe Dubleksi' or 'Bahçe Katı' so just ignore 'teras' or 'balkon'"+
+          "7. if customer says two values for a field, try to match with 'or' operator. For example, if customer says 'Kiralık' or 'Satılık' try to match with OR: \n [ \n Ilan_Durumu: 'Kiralık' \n Ilan_Durumu: 'Satılık'\n ]"+
+          "8. Please Use 'Konut_Sekli' and 'Bulundugu_Kat_Tipi' correctly if Costumer Dooesn't say 'Dubleks' just match 'Bulunudugu_Kat_tipi' with 'Ara kat'"+
+          "9.please carefull what customer says 'Benzersiz bir yaşam alanı arıyorum, tercihen şehir merkezinde açık konseptli bir çatı katı. Panoramik şehir manzarası olmalı, modern mutfak yüksek kaliteli aletlerle donatılmış olmalı ve aynı zamanda ev ofisi olarak da kullanılabilecek bir alan olmalı. İdeal olarak, ekolojik malzemelerle yenilenmiş ve akıllı ev teknolojisiyle donatılmış tarihi bir binada olmalı. En az 150 metrekare alan, iki banyo olmalı ve evcil hayvan dostu olmalı. Mahalle canlı olmalı, çok fazla yeşillik olmalı, sanatkar kahve dükkanlarına yakın ve güçlü bir topluluk hissi olmalı.'"+
+          "in this input you are trying create new value for 'cephe','Yapi_Tipi,'Isinma_tipi','Kullanım_Durumu'and 'Mahalle' and this fields have wrong values."+
+          "correct answer should be where{ 'Konut_Sekli' : 'Çatı Dubleksi',\n 'Oda_Sayisi' : '4+1', \n 'Banyo_Sayisi' : '2', \n'Net_m2' : {\n 'gte':'150'\n},\n 'Fiyat' : {\n'gte' : '20000'\n}} "+
+          "as you can see in this answer, I did not create new fields and I did not create new values for this fields. I just used the values that are in the list of fields."+
+          "so just try to match list of fields with costumers request if you can't match the list of fields and values just ignore it"+
+          "10. Just get the what customer wants like if the costumer says 'İzmirde 2+1 ev Arıyorum ve asansorlu olmasını istiyorum'"+
+          "correct answer should be where{'Sehir' : 'İzmir', \n 'Oda_Sayisi' : '2+1'}"+
+          "as you can see just ignore 'asansörlü' in this answer, I did not create new fields and I did not create new values for this fields. I just used the values that are in the list of fields.And try to Extarct the information only customer says if you cant match with field and values ignore it."+
+          "11. Check whether your response is in the correct Prisma query format: Example correct format, fields, and values may vary: 'prisma.property.findMany({\n  where: {\n    Field: 'Value',\n    FieldX: 'Value2'\n FieldY: {\n      gt: 100\n    }\n  }\n});' " +
+          "12. Double-check the Fields and set values inside [] brackets against "+
+          `"List of fields: {${fields}"}` +
+          "If they do not match, revise accordingly and give the corrected prism query. DO NOT CREATE NEW FIELDS LİKE 'Asansor' OR ANY OTHER NONSENSE. DO NOT CREATE NEW VARIABLES FOR THİS FİELDS 'Ilan_Durumu, Konut_Sekli, Yapi_Tipi, Kullanim_Durumu, Yakit_Tipi, Esya_Durumu, Isinma_Tipi, Konut_Tipi, Cephe, Yapinin_Durumu, Bulundugu_Kat_Tipi'"+
+          "13.Please Check 'Cephe' fields it should be 'Kuzey', 'Güney', 'Doğu', 'Batı'. Costumer Can say 'güneş görsün' Then Value should be 'Güney'. If costumer wants another value for 'Cephe' field, just ignore it.",
