@@ -33,17 +33,14 @@ export async function POST(request: any) {
           - 'Yapinin_Durumu': ['İkinci El', 'Sıfır', 'Yapım Aşamasında']
           - 'Bulundugu_Kat_Tipi': ['Yüksek Giriş', 'Ara Kat', 'En Üst Kat', 'Çatı Katı', 'Teras Katı', 'Bodrum', 'Yarı Bodrum', 'Bodrum ve Zemin', 'Zemin', 'Bahçe Katı', 'Giriş Katı', 'Villa Katı', 'Asma Kat', 'Kot 1', 'Kot 2']
           - 'Bulundugu_Kat_Numarasi': integer customer specified
+          - 'Oda_Sayisi': ['4+1', '2+1', '1+1', '3+1', '1+0', '6+1', '5+1', '4+2'](This field is for the number of rooms in the house. The first number is the number of rooms, and the second number is the number of living rooms. But this field is string not integer so do not use less than (lte) or greater than (gte) in this field.)
           
           Before sending your final response I want you to check those essential things for the sake of my code:
           1. In your response, are there any fields that are not in the list of fields? If yes, then try to come up with a new response that has the exact fields that are presented in the list of fields. Try to filter those fields correctly. If there is irrelevant information in the given input, do not try to categorize them.
           2. Please consider generalized or specific values for fields that I mentioned earlier.
           3. Avoid adding incompatible fields or field values to the content.
           4. Avoid adding unnecessary information to the response content. This includes explanation, boolean fields, etc.
-          5. Check whether your response is in the correct Prisma query format: Example correct format, fields, and values may vary:
-              prisma.property.findMany({
-                where: {
-      }
-              });
+          5. 5. Check whether your response is in the correct Prisma query format: Example correct format, fields, and values may vary: 'prisma.property.findMany({\n where: {\n Field:'Value',\n FieldX: 'Value2'\n FieldY: {\n gt: 100\n }\n }\n});'"
           6. If your response passes the steps above, you can finish your work. If any of the steps above are not passed, you should try to come up with a new response that satisfies the conditions above.
         `,
       },
