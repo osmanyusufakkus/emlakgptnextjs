@@ -116,7 +116,7 @@ pnpm dev
 bun dev
 ```
 
-Open [https://emlakgptnextjs.vercel.app] with your browser to see the result.
+Open [https://emlakgptnextjs.vercel.app] with your browser to see the results.
 
 You can start after signing up/on the site.
 
