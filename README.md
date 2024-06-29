@@ -91,10 +91,10 @@ $ npm install (in package directory no arguments):
 ```
 
 ## Usage
+
 **Firstly**, you need to create your **.env** file in the root of your project file and paste the necessary keys, and URL which you can get from the project owner.
 
 **Secondly**, you need to connect Prisma in order to reach the database.
-
 
 Prisma connection codes (write them in the terminal respectively. If a terminal is in use, create new terminal):
 
@@ -116,7 +116,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://emlakgptnextjs.vercel.app](https://emlakgptnextjs.vercel.app) with your browser to see the result.
 
 You can start after signing up/on the site.
 
