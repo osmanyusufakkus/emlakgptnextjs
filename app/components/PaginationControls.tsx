@@ -27,7 +27,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         disabled={!hasPrevPage}
         onClick={() => {
           router.push(
-            `http://localhost:3000/listings/?page=${
+            `https://emlakgptnextjs.vercel.app//listings/?page=${
               Number(page) - 1
             }&per_page=${per_page}`
           );
@@ -44,7 +44,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         className="bg-white text-gray-700 p-4 flex items-center gap-2 rounded-full outline-none hover:scale-[1.05]  hover:text-gray-950 transition cursor-pointer shadow-md border-[2px] border-cyan-500"
         disabled={!hasNextPage}
         onClick={() => {
-          const newUrl = `http://localhost:3000/listings/?page=${
+          const newUrl = `https://emlakgptnextjs.vercel.app//listings/?page=${
             Number(page) + 1
           }&per_page=${per_page}`;
           console.log(newUrl);
