@@ -18,6 +18,7 @@ export async function GET(request: Request) {
       "Bulundugu_Kat_Numarasi",
     ];
     const parsedParams: any = {};
+
     for (const [key, value] of Object.entries(params)) {
       if (typeof value === "string") {
         if (fields.includes(key)) {
@@ -30,9 +31,11 @@ export async function GET(request: Request) {
         for (const [subKey, subValue] of Object.entries(value)) {
           if (fields.includes(key)) {
             paramObject[subKey] = Number(subValue);
-            parsedParams[key] = paramObject;
+          } else {
+            paramObject[subKey] = Array.isArray(subValue) ? subValue : subValue;
           }
         }
+        parsedParams[key] = paramObject;
       }
     }
 
@@ -59,5 +62,6 @@ export async function GET(request: Request) {
     }
   } catch (error: any) {
     console.error(error);
+    return NextResponse.json({ error: error.message });
   }
 }

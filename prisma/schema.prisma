@@ -3,40 +3,41 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["mongodb"]
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "mongodb"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Link {
-  id                    Int     @id @default(autoincrement())
+  id                    String     @id @default(auto()) @map("_id") @db.ObjectId
   Baslik                String
   Link                  String  @unique
   Ziyaret_Edildi        Boolean @default(false)
   Ziyaret_Ediliyor      Boolean @default(false)
-  Kira                  Decimal?
+  Kira                  Int?
   Fotograf              String?
   Olusturuldugu_Tarih   DateTime @default(now())
   Guncellendigi_Tarih   DateTime @updatedAt
 }
 
 model Property {
-  id                    Int     @id @default(autoincrement())
+  id                    String     @id @default(auto()) @map("_id") @db.ObjectId
   Link                  String  @unique
   Ilan_no               String  @unique
   Baslik                String
-  Fiyat                 Decimal?
+  Fiyat                 Int?
   Fotograf              String?
   Son_Guncelleme_Tarihi String
   Ilan_Durumu           String
   Konut_Tipi            String
   Konut_Sekli           String
   Oda_Sayisi            String
-  Brut_m2               Decimal
-  Net_m2                Decimal
+  Brut_m2               Int
+  Net_m2                Int
   Bulundugu_Kat_Tipi    String?
   Bulundugu_Kat_Numarasi   Int?
   Bina_Yasi             Int?
@@ -47,9 +48,9 @@ model Property {
   Yapi_Tipi             String
   Yapinin_Durumu        String
   Kullanim_Durumu       String
-  Aidat                 Decimal
+  Aidat                 Int
   Cephe                 String
-  Depozito              Decimal
+  Depozito              Int
   Yakit_Tipi            String
   Yetkili_Ofis          String
   Sehir                 String
